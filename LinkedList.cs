@@ -70,6 +70,11 @@
         }
     }//end function
 
+    public object this[int index] {
+        get { return Get(index); }
+        set { Set(index, value); }
+    }//end indexer
+
     public void AddFirst(object element) {
         Node currentNode = _head;
         Node newNode = new Node(element);

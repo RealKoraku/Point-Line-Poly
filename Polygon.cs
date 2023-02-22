@@ -52,8 +52,6 @@
         }
     }
 
-    public 
-
     public override string ToString() {
 
         string allPoints = "";
