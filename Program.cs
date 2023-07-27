@@ -67,15 +67,19 @@ namespace DrawPoint {
                     console = Input("\nEnter another point? (y/n) ");
                 } while ((console.ToLower() != "y") && (console.ToLower() != "n"));
 
-                if (console == "n") {
+                if (console == "n" && polygonList.Count > 1) {
+                    complete = true;
                     do {
                         console = Input("Close this polygon?");
                     } while (console.ToLower() != "n" && console.ToLower() != "y");
                     
                     if (console.ToLower() == "y") {
                         polygonList.Add(polygonList[0]);
+                        
                     }
                     break;
+                } else if (console == "n" && polygonList.Count <= 1) {
+                    complete = true;
                 }
                 Console.WriteLine();
             }

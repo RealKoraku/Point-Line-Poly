@@ -35,12 +35,12 @@
             polyPoints[i] = (Point)tempPoints[i];
         }
 
-        for (int i = 0; i < _n-1; i++) {
+        for (int i = 0; i < _n; i++) {
 
             if (polyPoints.Length == 1) {
                 polyPoints[i].DrawPoint();
 
-            } else if (i < polyPoints.Length) {
+            } else if (i < polyPoints.Length-1) {
                 Line aLine = new Line();
 
                 aLine = new(polyPoints[i], polyPoints[i + 1]);

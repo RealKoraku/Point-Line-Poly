@@ -73,6 +73,7 @@
             steps = Math.Abs(dy);
         }
 
+        
         decimal xInc = dx / steps;
         decimal yInc = dy / steps;
 
