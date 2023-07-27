@@ -73,7 +73,7 @@ namespace DrawPoint {
                     } while (console.ToLower() != "n" && console.ToLower() != "y");
                     
                     if (console.ToLower() == "y") {
-                        closed = true;
+                        polygonList.Add(polygonList[0]);
                     }
                     break;
                 }
@@ -83,9 +83,8 @@ namespace DrawPoint {
             Console.Clear();
             Polygon poly = new Polygon(polygonList);
 
-            //poly.ToString();
 
-                Console.ReadKey();
+            Console.ReadKey();
 
             //CREATE RANDOM POINTS AND STORE THEM TO THE ARRAY
             //for (int storeIndex = 0; storeIndex < points.Length; storeIndex++) {

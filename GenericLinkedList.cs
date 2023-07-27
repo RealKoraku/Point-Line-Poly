@@ -1,54 +1,84 @@
 ﻿class GenericLinkedList<T> {
-    private Node _head = null;
-    private int _count = 0;
+    private GenericNode<Type> _head;
+    private GenericNode<Type> _tail;
 
-    public int Count {
-        get { return _count; }
-        private set { _count = value; }
-    }//end property
+    public Type this[int index] {
+        get {
+            return Get(index);
+        }//end get
 
-    public object Get(int index) {
-        //SAFETY CHECKS
-        if (index >= Count || index < 0) {
-            throw new IndexOutOfRangeException($"Index is outside the bounds of the LinkedList. List is {Count} in size. index is currently {index}");
-        }//end if 
+        set {
+            Set(index, value);
+        }
+    }
+
+    public GenericLinkedList() {
+        _head = null;
+        _tail = null;
+    }
+
+    public GenericLinkedList(Type new_data) {
+        _head = new GenericNode<Type>(new_data);
+        _tail = _head;
+    }
+
+    public void Add(Type new_data) {
+        if (_head == null) {
+            _head = new GenericNode<Type>(new_data);
+            _tail = _tail.Next;
+        } else {
+            _tail.Next = new GenericNode<Type>(new_data);
+            _tail = _tail.Next;
+        }
+    }
+
+    public Type Get(int target_index) {
+        int current_index = 0;
 
         //REFRENCE HEAD OF LIST
-        Node currentNode = _head;
-        int currentIndex = 0;
+        GenericNode<Type> current_node = _head;
 
-        //LOOP UNTIL END WE REACH THE INDEX
-        while (currentIndex < index) {
-            currentNode = currentNode.Next;
-            currentIndex += 1;
-        }//end while
+        while (current_node != null) {
+            if (current_index == target_index) {
+                return current_node.Data;
 
-        //RETURN DATA
-        return currentNode.Data;
-    }//end method
+            }//end while
 
-    public void Set(int index, object element) {
-
-        Node currentNode = _head;
-
-        if (index >= Count || index < 0) {
-            throw new IndexOutOfRangeException($"Index is outside the bounds of the LinkedList. List is {Count} in size. index is currently {index}");
+            current_node = current_node.Next;
+            current_index += 1;
         }
 
-        for (int currentIndex = 0; currentIndex < Count; currentIndex++) {
+        throw new IndexOutOfRangeException("index[" + target_index + "] is not present in this Linked List");
+    }
 
-            if (currentIndex == index) {
-                currentNode.Data = element;
+    public void InsertFront(Type new_data) {
+        GenericNode<Type> new_node = new GenericNode<Type>(new_data);
+        new_node.Next = _head;
+        _head = new_node;
+
+    }
+
+    public void Set(int target_index, Type new_data) {
+        int current_index = 0;
+        bool found = false;
+
+        //START @ HEAD
+        GenericNode<Type> current_node = _head;
+
+        while (current_node != null & found == false) {
+            if (current_index == target_index) {
+                current_node.Data = new_data;
+                found = true;
             }
 
-            currentNode = currentNode.Next;
+            current_node = current_node.Next;
+            current_index += 1;
         }
-    }//end function
 
-    public object this[int index] {
-        get { return Get(index); }
-        set { Set(index, value); }
-    }//end indexer
+        if (found == false) {
+            throw new IndexOutOfRangeException("index[" + target_index + "] is not present in this Linked List");
+        }
+    }
 }
 
 //    public int Count {

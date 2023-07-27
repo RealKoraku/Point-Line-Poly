@@ -35,7 +35,7 @@
             polyPoints[i] = (Point)tempPoints[i];
         }
 
-        for (int i = 0; i < _n - 1; i++) {
+        for (int i = 0; i < _n-1; i++) {
 
             if (polyPoints.Length == 1) {
                 polyPoints[i].DrawPoint();
